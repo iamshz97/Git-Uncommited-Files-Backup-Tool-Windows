@@ -15,6 +15,10 @@ Just wrote this for fun there might be other sophisticated tool but you know ðŸ˜
 1. Git (Obviously ðŸ˜…)
 2. .NET Framework 4.6.2
 
+## Latest
+
+[Download GitModifiedFilesBackup V1](https://github.com/iamshz97/GitModifiedFilesBackupTool.Windows/raw/master/GitModifiedFilesBackup.exe)
+
 ## Usage
 
 Suppose you have several modified files under your repository. And you need to backup those modified/added files.
