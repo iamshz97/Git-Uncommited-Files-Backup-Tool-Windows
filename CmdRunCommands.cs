@@ -23,6 +23,8 @@ namespace GitRepositoryWIPFilesBackup
             psi.UseShellExecute = false;
             psi.WorkingDirectory = workingDirectory;
             process.StartInfo = psi;
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            process.StartInfo.CreateNoWindow = true;
             process.Start();
 
             List<string> WhiteListStrings = new List<string> { "Microsoft", "cd", ">" };

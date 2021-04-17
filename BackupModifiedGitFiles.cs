@@ -96,7 +96,7 @@ namespace GitRepositoryWIPFilesBackup
         public void GetModifiedFiles() 
         {
 
-            string gitModifiedFilesPathsString = CmdRunCommands.RunCommands(new List<string> { $@"cd {GitRepositoryPath}", @"git ls-files --modified" });
+            string gitModifiedFilesPathsString = CmdRunCommands.RunCommands(new List<string> { $@"cd {GitRepositoryPath}", @"git ls-files -m --others --exclude-standard" });
 
             if(!string.IsNullOrWhiteSpace(gitModifiedFilesPathsString))
             {
@@ -113,7 +113,7 @@ namespace GitRepositoryWIPFilesBackup
                 "Do you wish to backup another Git Repository?";
             string title = "Backup Another Git Repository";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Question, new MessageBoxDefaultButton(), MessageBoxOptions.DefaultDesktopOnly);
             if (result == DialogResult.Yes)
             {
                 // Starts a new instance of the program itself

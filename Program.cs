@@ -19,6 +19,7 @@ namespace GitRepositoryWIPFilesBackup
             if (args == null || args.Length < 1 ||string.IsNullOrWhiteSpace(args[0]))
             {
                 backupModifiedGitFiles = new BackupModifiedGitFiles();
+                backupModifiedGitFiles.IsScheduledTask = true;
             }
             else
             {
