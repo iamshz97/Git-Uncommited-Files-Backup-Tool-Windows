@@ -19,6 +19,8 @@ namespace GitUncommitedFilesBackup
 
         public string CurrentBranch { get; set; }
 
+        public string CopiedDirectory { get; set; }
+
         public string GitRepositoryPath 
         {
 
@@ -143,7 +145,7 @@ namespace GitUncommitedFilesBackup
             {
                 List<string> elements = gitModifiedFilePath.Split('\\').ToList();
                 elements.RemoveAt(elements.Count - 1);
-                gitModifiedFilesAbsolutePath.Add(string.Join("\\", elements).Replace(GitRepositoryName, $"backup\\{(IsScheduledTask ? "{GitRepositoryName}\\" : "")}{GitRepositoryName}.{CurrentBranch}.backup.{DateTime.Now:dddd.dd.MMMM.yyyy.HH.mm.ss}") + "\\");
+                gitModifiedFilesAbsolutePath.Add(string.Join("\\", elements).Replace(GitRepositoryName, $"backup\\{(IsScheduledTask ? "{GitRepositoryName}\\" : "")}{GitRepositoryName}.{CurrentBranch.Replace("/", "-")}.backup.{DateTime.Now:dddd.dd.MMMM.yyyy.HH.mm.ss}") + "\\");
             }
 
             List<string> copyCommands = new List<string>();
@@ -157,6 +159,12 @@ namespace GitUncommitedFilesBackup
                 CmdRunCommands.RunCommands(copyCommands);
             }
 
+
+            if (!IsScheduledTask)
+            {
+                string backupPath = GitRepositoryPath.Replace(GitRepositoryPath.Split('\\').Last(), "backup");
+                CmdRunCommands.RunCommands(new List<string> { $"explorer.exe \"{backupPath}\"" });
+            }
         }
     }
 }
