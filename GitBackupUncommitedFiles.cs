@@ -17,6 +17,8 @@ namespace GitUncommitedFilesBackup
 
         public string _GitRepositoryPath { get; set; }
 
+        public string CurrentBranch { get; set; }
+
         public string GitRepositoryPath 
         {
 
@@ -55,6 +57,8 @@ namespace GitUncommitedFilesBackup
 
                 if (GitModifiedFilesList.Count >= 1)
                 {
+                    CurrentBranch = CmdRunCommands.RunCommands(new List<string> { $@"cd {GitRepositoryPath}", @"git branch --show-current" });
+
                     string message = $"Discovered {GitModifiedFilesList.Count} modified file(s) proceed?";
                     string title = "Confirmation";
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -139,7 +143,7 @@ namespace GitUncommitedFilesBackup
             {
                 List<string> elements = gitModifiedFilePath.Split('\\').ToList();
                 elements.RemoveAt(elements.Count - 1);
-                gitModifiedFilesAbsolutePath.Add(string.Join("\\", elements).Replace(GitRepositoryName, $"backup\\{GitRepositoryName}\\{GitRepositoryName}.backup.{DateTime.Now:dddd.dd.MMMM.yyyy.HH.mm.ss}") + "\\");
+                gitModifiedFilesAbsolutePath.Add(string.Join("\\", elements).Replace(GitRepositoryName, $"backup\\{(IsScheduledTask ? "{GitRepositoryName}\\" : "")}{GitRepositoryName}.{CurrentBranch}.backup.{DateTime.Now:dddd.dd.MMMM.yyyy.HH.mm.ss}") + "\\");
             }
 
             List<string> copyCommands = new List<string>();
