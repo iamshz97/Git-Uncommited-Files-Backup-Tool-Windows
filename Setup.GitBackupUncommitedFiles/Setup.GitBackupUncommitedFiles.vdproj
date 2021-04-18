@@ -64,13 +64,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_112E7E084B204C1E8312FA2EF6032DCD"
+        "OwnerKey" = "8:_E10B33FB33916C5B0C4FB8B4447F5554"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_33F697DAF9584DF982D1A09F2B5BA423"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_112E7E084B204C1E8312FA2EF6032DCD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -83,12 +89,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_8494FAB635461619EC3BF7752ADFC563"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E10B33FB33916C5B0C4FB8B4447F5554"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -116,6 +116,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -347,15 +355,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Git Backup Uncommited Files"
-        "ProductCode" = "8:{14F4CA4E-DF4D-4D5C-BA39-015EEC5E36B1}"
-        "PackageCode" = "8:{B85CF4E4-C6C9-41CC-9810-E2005DDEF7BD}"
+        "ProductCode" = "8:{95389ED7-058D-4039-A28D-94514B714346}"
+        "PackageCode" = "8:{E0FC0B56-0F53-44DF-9F5B-FB4ACC4CB748}"
         "UpgradeCode" = "8:{F35BD939-6357-4ADF-A404-45795C624687}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:iamshz97"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -365,7 +373,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_BD97489D6E334FEFA58B86005BA10BC9"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
