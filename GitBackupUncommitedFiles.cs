@@ -145,7 +145,7 @@ namespace GitUncommitedFilesBackup
             {
                 List<string> elements = gitModifiedFilePath.Split('\\').ToList();
                 elements.RemoveAt(elements.Count - 1);
-                gitModifiedFilesAbsolutePath.Add(string.Join("\\", elements).Replace(GitRepositoryName, $"backup\\{(IsScheduledTask ? "{GitRepositoryName}\\" : "")}{GitRepositoryName}.{CurrentBranch.Replace("/", "-")}.backup.{DateTime.Now:dddd.dd.MMMM.yyyy.HH.mm.ss}") + "\\");
+                gitModifiedFilesAbsolutePath.Add(string.Join("\\", elements).Replace(GitRepositoryName, $"Backups\\{(IsScheduledTask ? "{Scheduled\\GitRepositoryName}\\" : "")}{GitRepositoryName}.{CurrentBranch.Replace("/", "-")}.backup.{DateTime.Now:dddd.dd.MMMM.yyyy.HH.mm.ss}") + "\\");
             }
 
             List<string> copyCommands = new List<string>();
