@@ -17,7 +17,7 @@ Just wrote this for fun there might be other sophisticated tool but you know �
 
 ## Latest
 
-[Download GitModifiedFilesBackup V1](https://github.com/iamshz97/GitModifiedFilesBackupTool.Windows/raw/master/GitModifiedFilesBackup.exe)
+[Download GitAddedModifiedFilesBackupTool V1](https://github.com/iamshz97/GitAddedModifiedFilesBackupTool.Windows/raw/master/GitAddedModifiedFilesBackupTool.exe)
 
 ## Usage
 
@@ -25,16 +25,16 @@ Suppose you have several modified files under your repository. And you need to b
 
 ![](res/2021-04-18-04-04-02.png)
 
-Run the GitModifiedFilesBackup.exe (I need to change the name YES 😁) choose the repo location and confirm backup.
+Run the GitAddedModifiedFilesBackupTool.exe (I need to change the name YES 😁) choose the repo location and confirm backup.
 
 **Repo Location**
 ```
-C:\Repo\GitModifiedFilesBackup
+C:\Repo\GitAddedModifiedFilesBackupTool
 ```
 
 **Backup Location**
 ```
-C:\Repo\backup\GitModifiedFilesBackup\GitModifiedFilesBackup.backup.Sunday.18.April.2021.04.28.38
+C:\Repo\backup\GitAddedModifiedFilesBackupTool\GitAddedModifiedFilesBackupTool.backup.Sunday.18.April.2021.04.28.38
 ```
 
 
@@ -43,7 +43,7 @@ C:\Repo\backup\GitModifiedFilesBackup\GitModifiedFilesBackup.backup.Sunday.18.Ap
 - Invoke the exe by passing
 
 ```
-GitModifiedFilesBackup.exe "C:\Repo\GitModifiedFilesBackup"
+GitAddedModifiedFilesBackupTool.exe "C:\Repo\GitAddedModifiedFilesBackupTool"
 //argument 01 - repositorypath
 ```
 
