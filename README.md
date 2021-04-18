@@ -17,9 +17,7 @@ Just wrote this for fun there might be other sophisticated tools but you know �
 1. Git (Obviously 😅)
 2. .NET Framework 4.6.2
 
-## Latest
-
-[Download GitBackupUncommitedFiles V1](https://github.com/iamshz97/GitBackupUncommitedFiles.Windows/raw/master/GitAddedModifiedFilesBackup.exe)
+## Installer ⚙ [Download GitBackupUncommitedFiles Setup](Setup.GitBackupUncommitedFiles\Release)
 
 ## Usage
 
