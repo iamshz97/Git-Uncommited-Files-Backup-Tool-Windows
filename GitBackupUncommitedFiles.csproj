@@ -117,4 +117,8 @@
     <Content Include="faviconL.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>echo "Copying EXE Portable to Final Directory"
+xcopy "GitBackupUncommitedFiles.exe" "..\..\Setup.GitBackupUncommitedFiles\Final\GitBackupUncommitedFilesPortable.exe" /Y</PostBuildEvent>
+  </PropertyGroup>
 </Project>
