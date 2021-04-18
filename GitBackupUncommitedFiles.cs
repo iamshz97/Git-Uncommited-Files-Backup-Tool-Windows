@@ -162,7 +162,7 @@ namespace GitUncommitedFilesBackup
 
             if (!IsScheduledTask)
             {
-                string backupPath = GitRepositoryPath.Replace(GitRepositoryPath.Split('\\').Last(), "backup");
+                string backupPath = GitRepositoryPath.Replace(GitRepositoryPath.Split('\\').Last(), "Backups");
                 CmdRunCommands.RunCommands(new List<string> { $"explorer.exe \"{backupPath}\"" });
             }
         }
