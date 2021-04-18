@@ -7,22 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GitAddedModifiedFilesBackup
+namespace GitUncommitedFilesBackup
 {
     class Program
     {
         [STAThread]
         static void Main(string[] args)
         {
-            BackupAddedModifiedGitFiles backupModifiedGitFiles;
+            GitBackupUncommitedFiles backupModifiedGitFiles;
 
             if (args == null || args.Length < 1 ||string.IsNullOrWhiteSpace(args[0]))
             {
-                backupModifiedGitFiles = new BackupAddedModifiedGitFiles();
+                backupModifiedGitFiles = new GitBackupUncommitedFiles();
             }
             else
             {
-                backupModifiedGitFiles = new BackupAddedModifiedGitFiles(args[0]);
+                backupModifiedGitFiles = new GitBackupUncommitedFiles(args[0]);
                 backupModifiedGitFiles.IsScheduledTask = true;
             }
 

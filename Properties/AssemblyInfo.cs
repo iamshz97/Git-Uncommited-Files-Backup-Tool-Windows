@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GitAddedModifiedFilesBackup")]
+[assembly: AssemblyTitle("GitBackupUncommitedFiles")]
 [assembly: AssemblyDescription("Backup Added, Modified Files In Git Directory")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Shazni Shiraz")]
-[assembly: AssemblyProduct("GitAddedModifiedFilesBackup")]
+[assembly: AssemblyProduct("GitBackupUncommitedFiles")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

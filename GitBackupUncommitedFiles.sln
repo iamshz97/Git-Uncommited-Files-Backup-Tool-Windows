@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitAddedModifiedFilesBackup", "GitAddedModifiedFilesBackup.csproj", "{E96B6499-5599-411C-BA2C-A0BE516BCB04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitBackupUncommitedFiles", "GitBackupUncommitedFiles.csproj", "{E96B6499-5599-411C-BA2C-A0BE516BCB04}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup.GitBackupUncommitedFiles", "..\Setup.GitBackupUncommitedFiles\Setup.GitBackupUncommitedFiles.vdproj", "{C42801F5-C70E-4197-B145-AE160847F919}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{E96B6499-5599-411C-BA2C-A0BE516BCB04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E96B6499-5599-411C-BA2C-A0BE516BCB04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E96B6499-5599-411C-BA2C-A0BE516BCB04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C42801F5-C70E-4197-B145-AE160847F919}.Debug|Any CPU.ActiveCfg = Debug
+		{C42801F5-C70E-4197-B145-AE160847F919}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

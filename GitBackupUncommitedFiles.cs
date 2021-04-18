@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GitAddedModifiedFilesBackup
+namespace GitUncommitedFilesBackup
 {
-    public class BackupAddedModifiedGitFiles
+    public class GitBackupUncommitedFiles
     {
         public List<string> GitModifiedFilesList = new List<string>();
 
@@ -36,12 +36,12 @@ namespace GitAddedModifiedFilesBackup
 
         }
 
-        public BackupAddedModifiedGitFiles()
+        public GitBackupUncommitedFiles()
         {
             
         }
 
-        public BackupAddedModifiedGitFiles(string gitRepositoryPath)
+        public GitBackupUncommitedFiles(string gitRepositoryPath)
         {
             GitRepositoryPath = gitRepositoryPath;
         }

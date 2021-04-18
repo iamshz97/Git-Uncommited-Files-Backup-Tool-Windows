@@ -1,13 +1,15 @@
-# Backup Git Modified/Added Files
+# Backup Uncommited Files in Git Repository
 
 ## Why
-Sometimes I feel a need of having the files affected on my working repository to be backed up. Yes feature branching and stashing does exist, however sometimes based on my needs i just need to keep backups.
+Sometimes I feel a need of having the files affected on my working repository to be backed up. Yes feature branching and stashing does exist, however sometimes based on my needs i just need to keep backups with the files i spoil with 😜.
 
-Just wrote this for fun there might be other sophisticated tool but you know 😊.
+Just wrote this for fun there might be other sophisticated tools but you know 😊.
 
-## What does this app do exactly
+## What does this app does exactly
 
-1. Simply gets all the affected files from your repository and copy it  to backup folder.
+![](res/2021-04-18-14-35-51.png)
+
+1. Simply gets all the affected + added files from your repository and copy it  to a backup folder.
 2. Can also be invoked using a scheduler task service, like if you need to backup affected files every 2 hours just to keep multiple versions.
 
 ## Prerequisites
@@ -17,7 +19,7 @@ Just wrote this for fun there might be other sophisticated tool but you know �
 
 ## Latest
 
-[Download GitAddedModifiedFilesBackupTool V1](https://github.com/iamshz97/GitAddedModifiedFilesBackupTool.Windows/raw/master/GitAddedModifiedFilesBackupTool.exe)
+[Download GitBackupUncommitedFiles V1](https://github.com/iamshz97/GitBackupUncommitedFiles.Windows/raw/master/GitAddedModifiedFilesBackup.exe)
 
 ## Usage
 
@@ -25,16 +27,16 @@ Suppose you have several modified files under your repository. And you need to b
 
 ![](res/2021-04-18-04-04-02.png)
 
-Run the GitAddedModifiedFilesBackupTool.exe (I need to change the name YES 😁) choose the repo location and confirm backup.
+Run the GitBackupUncommitedFiles.exe (I need to change the name YES 😁) choose the repo location and confirm backup.
 
 **Repo Location**
 ```
-C:\Repo\GitAddedModifiedFilesBackupTool
+C:\Repo\GitBackupUncommitedFiles
 ```
 
 **Backup Location**
 ```
-C:\Repo\backup\GitAddedModifiedFilesBackupTool\GitAddedModifiedFilesBackupTool.backup.Sunday.18.April.2021.04.28.38
+C:\Repo\backup\GitBackupUncommitedFiles\GitBackupUncommitedFiles.backup.Sunday.18.April.2021.04.28.38
 ```
 
 
@@ -43,7 +45,7 @@ C:\Repo\backup\GitAddedModifiedFilesBackupTool\GitAddedModifiedFilesBackupTool.b
 - Invoke the exe by passing
 
 ```
-GitAddedModifiedFilesBackupTool.exe "C:\Repo\GitAddedModifiedFilesBackupTool"
+GitBackupUncommitedFiles.exe "C:\Repo\GitBackupUncommitedFiles"
 //argument 01 - repositorypath
 ```
 
