@@ -9,7 +9,7 @@ namespace GitUncommitedFilesBackup
 {
     public class GitBackupUncommitedFiles
     {
-        public List<string> GitModifiedFilesList = new List<string>();
+        public List<string> GitAffectedFilesList = new List<string>();
 
         public bool IsScheduledTask { get; set; } = false;
 
@@ -55,13 +55,13 @@ namespace GitUncommitedFilesBackup
 
             try
             {
-                GetModifiedFiles();
+                GetAffectedFiles();
 
-                if (GitModifiedFilesList.Count >= 1)
+                if (GitAffectedFilesList.Count >= 1)
                 {
                     CurrentBranch = CmdRunCommands.RunCommands(new List<string> { $@"cd {GitRepositoryPath}", @"git branch --show-current" });
 
-                    string message = $"Discovered {GitModifiedFilesList.Count} modified file(s) proceed?";
+                    string message = $"Discovered {GitAffectedFilesList.Count} added/modified file(s) proceed?";
                     string title = "Confirmation";
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
 
@@ -99,17 +99,24 @@ namespace GitUncommitedFilesBackup
                 BackupAnotherGitRepository(true);
         }
 
-        public void GetModifiedFiles() 
+        public void GetAffectedFiles() 
         {
+            GitAffectedFilesList.Clear();
 
-            string gitModifiedFilesPathsString = CmdRunCommands.RunCommands(new List<string> { $@"cd {GitRepositoryPath}", @"git ls-files -m --others --exclude-standard" });
+            // Get added modified files list
+            List<string> getAffectedFilesStrings = new List<string> {
+                CmdRunCommands.RunCommands(new List<string> { $@"cd {GitRepositoryPath}", @"git diff --cached --name-only --diff-filter=A" }),
+                CmdRunCommands.RunCommands(new List<string> { $@"cd {GitRepositoryPath}", @"git diff --cached --name-only --diff-filter=M" })
+            };
 
-            if(!string.IsNullOrWhiteSpace(gitModifiedFilesPathsString))
+            foreach (var getAffectedFilesString in getAffectedFilesStrings)
             {
-                GitModifiedFilesList.Clear();
-                GitModifiedFilesList = gitModifiedFilesPathsString.Split('\n').ToList(); ;
-            }
+                if (!string.IsNullOrWhiteSpace(getAffectedFilesString))
+                {
+                    GitAffectedFilesList.AddRange(getAffectedFilesString.Split('\n').ToList());
+                }
 
+            }
         }
 
         static void BackupAnotherGitRepository(bool success = false)
@@ -137,11 +144,11 @@ namespace GitUncommitedFilesBackup
         public void BackupFiles() 
         {
 
-            GitModifiedFilesList = GitModifiedFilesList.Select(s => $@"{GitRepositoryPath}\{s.Replace("/", "\\")}").ToList();
+            GitAffectedFilesList = GitAffectedFilesList.Select(s => $@"{GitRepositoryPath}\{s.Replace("/", "\\")}").ToList();
 
             List<string> gitModifiedFilesAbsolutePath = new List<string>();
 
-            foreach (var gitModifiedFilePath in GitModifiedFilesList)
+            foreach (var gitModifiedFilePath in GitAffectedFilesList)
             {
                 List<string> elements = gitModifiedFilePath.Split('\\').ToList();
                 elements.RemoveAt(elements.Count - 1);
@@ -149,11 +156,11 @@ namespace GitUncommitedFilesBackup
             }
 
             List<string> copyCommands = new List<string>();
-            if (GitModifiedFilesList.Count == gitModifiedFilesAbsolutePath.Count)
+            if (GitAffectedFilesList.Count == gitModifiedFilesAbsolutePath.Count)
             {
-                for (int i = 0; i < GitModifiedFilesList.Count; i++)
+                for (int i = 0; i < GitAffectedFilesList.Count; i++)
                 {
-                    copyCommands.Add($"xcopy \"{GitModifiedFilesList[i]}\" \"{gitModifiedFilesAbsolutePath[i]}\" ");
+                    copyCommands.Add($"xcopy \"{GitAffectedFilesList[i]}\" \"{gitModifiedFilesAbsolutePath[i]}\" ");
                 }
 
                 CmdRunCommands.RunCommands(copyCommands);
