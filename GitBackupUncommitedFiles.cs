@@ -106,16 +106,21 @@ namespace GitUncommitedFilesBackup
             // Get added modified files list
             List<string> getAffectedFilesStrings = new List<string> {
                 CmdRunCommands.RunCommands(new List<string> { $@"cd {GitRepositoryPath}", @"git diff --cached --name-only --diff-filter=A" }),
-                CmdRunCommands.RunCommands(new List<string> { $@"cd {GitRepositoryPath}", @"git diff --cached --name-only --diff-filter=M" })
+                CmdRunCommands.RunCommands(new List<string> { $@"cd {GitRepositoryPath}", @"git diff --cached --name-only --diff-filter=M" }),
+                CmdRunCommands.RunCommands(new List<string> { $@"cd {GitRepositoryPath}", @"git ls-files -m --others --exclude-standard" })
             };
 
-            foreach (var getAffectedFilesString in getAffectedFilesStrings)
+            for (int i = 0; i < getAffectedFilesStrings.Count; i++)
             {
-                if (!string.IsNullOrWhiteSpace(getAffectedFilesString))
+                if (!string.IsNullOrWhiteSpace(getAffectedFilesStrings[i]) && i < 2)
                 {
-                    GitAffectedFilesList.AddRange(getAffectedFilesString.Split('\n').ToList());
+                    GitAffectedFilesList.AddRange(getAffectedFilesStrings[i].Split('\n').ToList());
                 }
 
+                if(GitAffectedFilesList.Count == 0 && i > 1)
+                {
+                    GitAffectedFilesList.AddRange(getAffectedFilesStrings[i].Split('\n').ToList());
+                }
             }
         }
 
@@ -148,11 +153,21 @@ namespace GitUncommitedFilesBackup
 
             List<string> gitModifiedFilesAbsolutePath = new List<string>();
 
+            string backupName = "";
+            if (Utilities.InputBox("Backup folder name", "What are you backing up?", ref backupName) == DialogResult.OK)
+            {
+                
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
+
             foreach (var gitModifiedFilePath in GitAffectedFilesList)
             {
                 List<string> elements = gitModifiedFilePath.Split('\\').ToList();
                 elements.RemoveAt(elements.Count - 1);
-                gitModifiedFilesAbsolutePath.Add(string.Join("\\", elements).Replace(GitRepositoryName, $"Backups\\{(IsScheduledTask ? "{Scheduled\\GitRepositoryName}\\" : "")}{GitRepositoryName}.{CurrentBranch.Replace("/", "-")}.backup.{DateTime.Now:dddd.dd.MMMM.yyyy.HH.mm.ss}") + "\\");
+                gitModifiedFilesAbsolutePath.Add(string.Join("\\", elements).Replace(GitRepositoryName, $"Backups\\{(IsScheduledTask ? "{Scheduled\\GitRepositoryName}\\" : "")}{backupName}_{DateTime.Now:ddd.dd.MMM.yyyy.HH.mm.ss}_{GitRepositoryName}_{CurrentBranch.Replace("/", "-")}_backup.") + "\\");
             }
 
             List<string> copyCommands = new List<string>();
