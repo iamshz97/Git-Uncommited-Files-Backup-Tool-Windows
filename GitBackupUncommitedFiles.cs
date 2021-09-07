@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GitBackupUncommitedFiles;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace GitUncommitedFilesBackup
         public string CurrentBranch { get; set; }
 
         public string CopiedDirectory { get; set; }
+
+        public static ProgressWindow progressWindow = new ProgressWindow();
 
         public string GitRepositoryPath 
         {
@@ -53,20 +56,20 @@ namespace GitUncommitedFilesBackup
 
         public void StartBackup() 
         {
-
             try
             {
                 GetAffectedFiles();
 
                 if (GitAffectedFilesList.Count >= 1)
                 {
-
                     CurrentBranch = CmdRunCommands.RunCommands(new List<string> { GitRepositoryPath.Substring(0,2), $@"cd {GitRepositoryPath}", @"git branch --show-current" });
+
+                    progressWindow.Hide();
 
                     string message = $"Discovered {GitAffectedFilesList.Count} added/modified file(s) proceed?";
                     string title = "Confirmation";
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-
+                    progressWindow.lblProgress.Text = "Waiting for backup confirmation....";
                     DialogResult result2;
                     if (!IsScheduledTask)
                     {
@@ -79,7 +82,13 @@ namespace GitUncommitedFilesBackup
 
                     if (result2 == DialogResult.Yes)
                     {
+                        if (!IsScheduledTask)
+                        {
+                            progressWindow.lblProgress.Text = "Backing up uncommitted files....";
+                            progressWindow.Show();
+                        }
                         BackupFiles();
+
                     }
                     else
                     {
@@ -104,7 +113,18 @@ namespace GitUncommitedFilesBackup
         public void GetAffectedFiles() 
         {
             GitAffectedFilesList.Clear();
+            
+            if (!IsScheduledTask)
+            {
+                Application.EnableVisualStyles();
+                progressWindow.lblProgress.Text = "Scanning for uncommitted files....";
+                progressWindow.Show();
+                progressWindow.BringToFront();
+            }
 
+            progressWindow.lblProgress.Text = "Waiting for repository path....";
+            Console.WriteLine(GitRepositoryPath);
+            progressWindow.lblProgress.Text = "Scanning for uncommitted files....";
             // Get added modified files list
             List<string> getAffectedFilesStrings = new List<string> {
                 CmdRunCommands.RunCommands(new List<string> { GitRepositoryPath.Substring(0, 2), $@"cd {GitRepositoryPath}", @"git diff --cached --name-only --diff-filter=A" }),
@@ -128,7 +148,7 @@ namespace GitUncommitedFilesBackup
 
         static void BackupAnotherGitRepository(bool success = false)
         {
-
+            progressWindow.Hide();
             string message = success ? "Do you want to backup another git repository?" : "Seems like the previous chosen folder did not have any modified files.\n" +
                 "Do you wish to backup another Git Repository?";
             string title = "Backup Another Git Repository";
@@ -156,6 +176,8 @@ namespace GitUncommitedFilesBackup
             List<string> gitModifiedFilesAbsolutePath = new List<string>();
 
             string backupName = "";
+            progressWindow.lblProgress.Text = "Waiting for backup name....";
+
             if (Utilities.InputBox("Backup folder name", "What are you backing up?", ref backupName) == DialogResult.OK)
             {
                 
@@ -164,6 +186,8 @@ namespace GitUncommitedFilesBackup
             {
                 Environment.Exit(0);
             }
+
+            progressWindow.lblProgress.Text = "Backing up uncommitted files....";
 
             foreach (var gitModifiedFilePath in GitAffectedFilesList)
             {

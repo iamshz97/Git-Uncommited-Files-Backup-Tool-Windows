@@ -85,6 +85,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProgressWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgressWindow.Designer.cs">
+      <DependentUpon>ProgressWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="GitBackupUncommitedFiles.cs" />
     <Compile Include="CmdRunCommands.cs" />
     <Compile Include="Program.cs" />
@@ -116,6 +122,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="faviconL.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ProgressWindow.resx">
+      <DependentUpon>ProgressWindow.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
