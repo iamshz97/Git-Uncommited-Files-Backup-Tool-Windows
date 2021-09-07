@@ -23,7 +23,7 @@ namespace GitUncommitedFilesBackup
             psi.UseShellExecute = false;
             psi.WorkingDirectory = workingDirectory;
             process.StartInfo = psi;
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
             process.StartInfo.CreateNoWindow = true;
             process.Start();
 
